@@ -1,12 +1,17 @@
 ﻿Console.WriteLine("Задание 1");
-int[] numbers1 = { 5, -2, 7, 0, 3, 8, -1, 4, 10, 2 };
+int Size = 10;
+int[] numbers1 = new int[Size];
 
+for (int i = 0; i < Size; i++)
+{
+    numbers1[i] = i;
+}
 Console.WriteLine("Вариант А");
 
 Console.Write("Элементы: ");
 for (int i = 0; i < numbers1.Length; i++)
 {
-    Console.Write(numbers1[i] + " ");
+    Console.Write(numbers1[i] + ", ");
 }
 Console.WriteLine();
 
@@ -60,57 +65,25 @@ Console.WriteLine();
 Console.WriteLine("Вариант B");
 
 Console.Write("Элементы: ");
-for (int i = 0; i < numbers1.Length; i++)
+for (int i = 0; i < Size; i++)
 {
-    Console.Write(numbers1[i]);
-    if (i < numbers1.Length - 1)
-    {
-        Console.Write(", ");
-    }
+    Console.Write(numbers1[i] + ", ");
 }
+int sum = numbers1.Sum(x => x);
 Console.WriteLine();
+Console.WriteLine("Сумма элементов: " + sum);
+double average = numbers1.Average(x => x);
+Console.WriteLine("Среднее арифметическое: " + average);
+int max = numbers1.Max();
+Console.WriteLine("Максимальный элемент: " + max);
+int min = numbers1.Min();
+Console.WriteLine("Минимальный элемент: " + min);
+int even = numbers1.Count(x => x % 2 == 0);
+Console.WriteLine("Количество чётных: " + even);
+int odd = numbers1.Count(x => x % 2 == 1);
+Console.WriteLine("Количество нечётных: " + odd);
 
-int sumB = 0;
-int minB = numbers1[0];
-int maxB = numbers1[0];
-int evenCountB = 0;
-int oddCountB = 0;
-
-for (int i = 0; i < numbers1.Length; i++)
-{
-    sumB = sumB + numbers1[i];
-
-    if (numbers1[i] < minB)
-    {
-        minB = numbers1[i];
-    }
-
-    if (numbers1[i] > maxB)
-    {
-        maxB = numbers1[i];
-    }
-
-    if (numbers1[i] % 2 == 0)
-    {
-        evenCountB = evenCountB + 1;
-    }
-    else
-    {
-        oddCountB = oddCountB + 1;
-    }
-}
-
-double averageB = (double)sumB / numbers1.Length;
-
-Console.WriteLine("Сумма элементов: " + sumB);
-Console.WriteLine("Среднее арифметическое: " + averageB);
-Console.WriteLine("Минимальный элемент: " + minB);
-Console.WriteLine("Максимальный элемент: " + maxB);
-Console.WriteLine("Количество чётных: " + evenCountB);
-Console.WriteLine("Количество нечётных: " + oddCountB);
-/*
- -------------------------------------------------------------------------------------------------
-*/
+//-------------------------------------------------------------------------------------------------
 Console.WriteLine();
 Console.WriteLine("Задание 2");
 
@@ -132,7 +105,7 @@ Console.WriteLine("Вариант А");
 Console.Write("Исходный массив: ");
 for (int i = 0; i < numbers2.Length; i++)
 {
-    Console.Write(numbers2[i] + " ");
+    Console.Write(numbers2[i] + ", ");
 }
 Console.WriteLine();
 
@@ -181,70 +154,52 @@ for (int i = 1; i < numbers2.Length; i++)
 Console.Write("Массив после замены отрицательных на 0: ");
 for (int i = 0; i < numbers2.Length; i++)
 {
-    Console.Write(numbers2[i] + " ");
+    Console.Write(numbers2[i] + ", ");
 }
 Console.WriteLine();
 Console.WriteLine("Индекс первого максимального элемента: " + maxIdxA + " со значением " + maxValA);
 
 Console.WriteLine();
 Console.WriteLine("Вариант B");
-
-Console.Write("Исходный массив: ");
-for (int i = 0; i < numbers2ForB.Length; i++)
-{
-    Console.Write(numbers2ForB[i]);
-    if (i < numbers2ForB.Length - 1)
-    {
-        Console.Write(", ");
-    }
-}
-Console.WriteLine();
-
 int posCountB = 0;
 int negCountB = 0;
 int zeroCountB = 0;
 
+Console.Write("Исходный массив: ");
 for (int i = 0; i < numbers2ForB.Length; i++)
 {
-    if (numbers2ForB[i] > 0) posCountB++;
-    else if (numbers2ForB[i] < 0) negCountB++;
-    else zeroCountB++;
+    Console.Write(numbers2ForB[i] + ", ");
 }
+Console.WriteLine();
 
+for (int i = 0; i < numbers2ForB.Length; i++)
+{
+    if (numbers2ForB[i] > 0)
+    {
+        posCountB++;
+    }
+    else if (numbers2ForB[i] < 0)
+    {
+        negCountB++;
+    }
+    else
+    {
+        zeroCountB++;
+    }
+}
 Console.WriteLine("Положительных: " + posCountB);
 Console.WriteLine("Отрицательных: " + negCountB);
 Console.WriteLine("Равных 0: " + zeroCountB);
-
+int maxValB = numbers2ForB.Max();
+int maxIndexB = Array.IndexOf(numbers2ForB, maxValB);
+Console.Write("Массив после замены отрицательных на 0:: ");
 for (int i = 0; i < numbers2ForB.Length; i++)
 {
-    if (numbers2ForB[i] < 0)
-    {
-        numbers2ForB[i] = 0;
-    }
-}
-
-int maxValB = numbers2ForB[0];
-int maxIdxB = 0;
-for (int i = 1; i < numbers2ForB.Length; i++)
-{
-    if (numbers2ForB[i] > maxValB)
-    {
-        maxValB = numbers2ForB[i];
-        maxIdxB = i;
-    }
-}
-
-Console.Write("Массив после замены отрицательных на 0: ");
-for (int i = 0; i < numbers2ForB.Length; i++)
-{
-    Console.Write(numbers2ForB[i]);
-    if (i < numbers2ForB.Length - 1)
-    {
-        Console.Write(", ");
-    }
+    Console.Write(numbers2ForB[i] + ", ");
 }
 Console.WriteLine();
-Console.WriteLine("Индекс первого максимального элемента: " + maxIdxB + " со значением " + maxValB);
+Console.WriteLine("Индекс первого максимального элемента: " + maxIndexB + " со значением " + maxValB);
+Console.WriteLine();
 /*
  -------------------------------------------------------------------------------------------------
 */
@@ -302,45 +257,21 @@ else
 Console.WriteLine();
 Console.WriteLine("Вариант B");
 
-Console.Write("Исходный массив: ");
-for (int i = 0; i < numbers3ForB.Length; i++)
-{
-    Console.Write(numbers3ForB[i]);
-    if (i < numbers3ForB.Length - 1)
-    {
-        Console.Write(", ");
-    }
-}
 Console.WriteLine();
+Console.WriteLine("Вариант B");
+
+Console.Write("Исходный массив: ");
+Console.WriteLine(string.Join(", ", numbers3ForB));
 
 int firstElemBeforeB = numbers3ForB[0];
 Console.WriteLine("Первый элемент до переворота: " + firstElemBeforeB);
 
-int[] reversed = new int[numbers3ForB.Length];
-int idx = 0;
-for (int i = numbers3ForB.Length - 1; i >= 0; i--)
-{
-    reversed[idx] = numbers3ForB[i];
-    idx++;
-}
-
-for (int i = 0; i < numbers3ForB.Length; i++)
-{
-    numbers3ForB[i] = reversed[i];
-}
+Array.Reverse(numbers3ForB);
 
 int firstElemAfterB = numbers3ForB[0];
 
 Console.Write("Массив после переворота: ");
-for (int i = 0; i < numbers3ForB.Length; i++)
-{
-    Console.Write(numbers3ForB[i]);
-    if (i < numbers3ForB.Length - 1)
-    {
-        Console.Write(", ");
-    }
-}
-Console.WriteLine();
+Console.WriteLine(string.Join(", ", numbers3ForB));
 Console.WriteLine("Первый элемент после переворота: " + firstElemAfterB);
 
 if (firstElemBeforeB != firstElemAfterB)
